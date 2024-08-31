@@ -11,6 +11,7 @@ CREATE TABLE Usuarios (
     direccion TEXT,
     rol_id INT,
     fecha_registro DATETIME,
+    foto_perfil VARCHAR(255),
     activo BOOLEAN,
     FOREIGN KEY (rol_id) REFERENCES Roles(rol_id)
 );
@@ -66,7 +67,7 @@ CREATE TABLE Pasteles (
 CREATE TABLE Imagenes_Pasteles (
     imagen_id INT PRIMARY KEY AUTO_INCREMENT,
     pastel_id INT,
-    url VARCHAR(255),
+    imagen VARCHAR(255),
     descripcion TEXT,
     FOREIGN KEY (pastel_id) REFERENCES Pasteles(pastel_id)
 );
@@ -128,7 +129,7 @@ CREATE TABLE Pagos (
     pago_id INT PRIMARY KEY AUTO_INCREMENT,
     pedido_id INT,
     monto DECIMAL(10,2),
-    metodo_pago ENUM('tarjeta', 'paypal', 'transferencia'),
+    metodo_pago ENUM('tarjeta', 'paypal', 'efectivo'),
     estado ENUM('exitoso', 'fallido', 'pendiente'),
     fecha_pago DATETIME,
     FOREIGN KEY (pedido_id) REFERENCES Pedidos(pedido_id)
